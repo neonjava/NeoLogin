@@ -49,7 +49,7 @@ public class AutoTeleportConfig {
 
         World world = Bukkit.getWorld(worldName);
         if (world == null) {
-            plugin.getLogger().warning("自动传送功能设置的世界 '" + worldName + "' 不存在或未加载！该功能可能无法正常工作。");
+            plugin.getLogger().warning("Auto-teleport world '" + worldName + "' does not exist or is not loaded! This feature may not work correctly.");
             teleportLocation = null;
             return;
         }

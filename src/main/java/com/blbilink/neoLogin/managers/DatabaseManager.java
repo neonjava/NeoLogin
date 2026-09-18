@@ -24,12 +24,12 @@ public class DatabaseManager {
     public void init() {
         ConfigurationSection dbConfig = configManager.getDatabaseSection();
         if (dbConfig == null) {
-            plugin.getLogger().severe("在 config.yml 中找不到 'database' 配置项！数据库功能将无法使用。");
+            plugin.getLogger().severe("Could not find 'database' section in config.yml! Database features will not work.");
             return;
         }
 
         String dbType = dbConfig.getString("type", "sqlite");
-        plugin.getLogger().info("正在初始化数据库, 类型: " + dbType + "...");
+        plugin.getLogger().info("Initializing database, type: " + dbType + "...");
 
         this.databaseUtil = new DatabaseUtil(plugin);
 
@@ -37,11 +37,11 @@ public class DatabaseManager {
         boolean success = databaseUtil.initialize(dbConfig);
 
         if (success) {
-            plugin.getLogger().info("数据库连接池初始化成功！");
+            plugin.getLogger().info("Database connection pool initialized successfully!");
             // 初始化成功后，创建数据表
             setupTables();
         } else {
-            plugin.getLogger().severe("数据库初始化失败！请检查您的 config.yml 配置和数据库驱动。");
+            plugin.getLogger().severe("Database initialization failed! Please check your config.yml settings and database driver.");
         }
     }
 
@@ -60,9 +60,9 @@ public class DatabaseManager {
         try {
             // 使用 executeUpdate 方法
             databaseUtil.executeUpdate(createTableSQL);
-            plugin.getLogger().info("数据表结构已验证/创建。");
+            plugin.getLogger().info("Table structure verified/created.");
         } catch (SQLException e) {
-            plugin.getLogger().severe("创建数据表时出错！");
+            plugin.getLogger().severe("Error creating tables!");
             e.printStackTrace();
         }
     }
@@ -89,13 +89,13 @@ public class DatabaseManager {
     public Connection getConnection() {
         // 增加 isInitialized() 判断，更加健壮
         if (databaseUtil == null || !databaseUtil.isInitialized()) {
-            plugin.getLogger().severe("数据库未初始化或已关闭，无法获取连接！");
+            plugin.getLogger().severe("Database not initialized or closed, cannot obtain connection!");
             return null;
         }
         try {
             return databaseUtil.getConnection();
         } catch (SQLException e) {
-            plugin.getLogger().severe("无法从连接池获取数据库连接！");
+            plugin.getLogger().severe("Unable to get database connection from connection pool!");
             e.printStackTrace();
             return null;
         }

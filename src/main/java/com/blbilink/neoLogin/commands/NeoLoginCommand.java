@@ -79,7 +79,7 @@ public class NeoLoginCommand implements CommandExecutor, TabCompleter {
             sender.sendMessage(i18n.as("command.reloaded", sender instanceof Player));
         } catch (Exception e) {
             sender.sendMessage(i18n.as("command.reloadFailed", sender instanceof Player));
-            plugin.getLogger().severe("配置重载失败: " + e.getMessage());
+            plugin.getLogger().severe("Config reload failed: " + e.getMessage());
             e.printStackTrace();
         }
 
@@ -132,7 +132,7 @@ public class NeoLoginCommand implements CommandExecutor, TabCompleter {
                     String.format("%.2f", loc.getZ())));
         } catch (IOException e) {
             player.sendMessage(i18n.as("command.saveLocationFailed", true));
-            plugin.getLogger().severe("保存位置失败: " + e.getMessage());
+            plugin.getLogger().severe("Failed to save location: " + e.getMessage());
             e.printStackTrace();
         }
 

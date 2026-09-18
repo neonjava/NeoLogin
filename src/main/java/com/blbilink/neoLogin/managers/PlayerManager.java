@@ -225,14 +225,14 @@ public class PlayerManager {
             try {
                 String[] parts = itemString.split(":");
                 if (parts.length < 2) {
-                    plugin.getLogger().warning("无效的物品配置格式: " + itemString);
+                    plugin.getLogger().warning("Invalid item config format: " + itemString);
                     continue;
                 }
                 
                 // 解析物品类型
                 Material material = Material.matchMaterial(parts[0]);
                 if (material == null) {
-                    plugin.getLogger().warning("未知的物品类型: " + parts[0]);
+                    plugin.getLogger().warning("Unknown item type: " + parts[0]);
                     continue;
                 }
                 
@@ -253,9 +253,9 @@ public class PlayerManager {
                     }
                 }
             } catch (NumberFormatException e) {
-                plugin.getLogger().warning("无效的物品数量配置: " + itemString);
+                plugin.getLogger().warning("Invalid item amount config: " + itemString);
             } catch (Exception e) {
-                plugin.getLogger().warning("处理物品奖励时出错: " + itemString + " - " + e.getMessage());
+                plugin.getLogger().warning("Error processing item reward: " + itemString + " - " + e.getMessage());
             }
         }
     }

@@ -36,7 +36,7 @@ public class FloodgateListener implements Listener {
         this.floodgateEnabled = plugin.getServer().getPluginManager().isPluginEnabled("floodgate");
         
         if (floodgateEnabled) {
-            plugin.getLogger().info("检测到 Floodgate 插件，基岩版支持已启用！");
+            plugin.getLogger().info("Floodgate plugin detected, Bedrock support enabled!");
         }
     }
 
@@ -149,7 +149,7 @@ public class FloodgateListener implements Listener {
             String randomPassword = generateRandomPassword();
             String ipAddress = player.getAddress() != null ? player.getAddress().getAddress().getHostAddress() : "N/A";
             userDAO.registerUser(player.getUniqueId(), player.getName(), randomPassword, ipAddress);
-            plugin.getLogger().info("基岩版玩家 " + player.getName() + " 已自动注册");
+            plugin.getLogger().info("Bedrock player " + player.getName() + " auto-registered");
         }
 
         // 设置为已登录
@@ -157,7 +157,7 @@ public class FloodgateListener implements Listener {
         // 恢复玩家登录前的飞行状态
         playerManager.restoreFlightState(player);
         player.sendMessage(i18n.as("bedrock.autoLoginSuccess", true, player.getName()));
-        plugin.getLogger().info("基岩版玩家 " + player.getName() + " 已自动登录");
+        plugin.getLogger().info("Bedrock player " + player.getName() + " auto-logged in");
     }
 
     /**
@@ -213,7 +213,7 @@ public class FloodgateListener implements Listener {
 
             floodgatePlayer.sendForm(builder.build());
         } catch (Exception e) {
-            plugin.getLogger().warning("打开基岩版表单失败: " + e.getMessage());
+            plugin.getLogger().warning("Failed to open Bedrock form: " + e.getMessage());
         }
     }
 
@@ -280,7 +280,7 @@ public class FloodgateListener implements Listener {
             }
         } catch (Exception e) {
             player.sendMessage(i18n.as("bedrock.form.error", true));
-            plugin.getLogger().warning("处理基岩版表单响应失败: " + e.getMessage());
+            plugin.getLogger().warning("Failed to process Bedrock form response: " + e.getMessage());
             plugin.getFoliaUtil().runTaskLater(() -> openLoginForm(player), 40L);
         }
     }

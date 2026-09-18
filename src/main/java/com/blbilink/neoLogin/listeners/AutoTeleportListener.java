@@ -38,7 +38,7 @@ public class AutoTeleportListener implements Listener {
 
         // 检查是否设置了有效的传送点
         if (teleportLocation == null) {
-            plugin.getLogger().warning("玩家加入时自动传送功能已开启，但未设置有效的目标地点 (autoTeleport.locationPos)，请使用 /neologin savelocation 设置。");
+            plugin.getLogger().warning("Auto-teleport on join is enabled but no valid location is set (autoTeleport.locationPos). Use /neologin savelocation to set one.");
             return;
         }
 
@@ -68,7 +68,7 @@ public class AutoTeleportListener implements Listener {
 
         // 检查是否设置了有效的传送点
         if (teleportLocation == null) {
-            plugin.getLogger().warning("玩家死亡后自动传送功能已开启，但未设置有效的目标地点 (autoTeleport.locationPos)，请使用 /neologin savelocation 设置。");
+            plugin.getLogger().warning("Auto-teleport on death is enabled but no valid location is set (autoTeleport.locationPos). Use /neologin savelocation to set one.");
             return;
         }
 

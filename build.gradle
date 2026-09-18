@@ -5,8 +5,8 @@ plugins {
 }
 
 group = 'com.blbilink'
-def baseVersion = "1.21.8"
-// 从环境变量读取 CI 提供的构建号
+def baseVersion = "26.2.0"
+// Read build number from CI environment variable
 def buildNumber = System.getenv("GITHUB_RUN_NUMBER") ?: "SNAPSHOT"
 version = "${baseVersion}.${buildNumber}"
 
@@ -24,7 +24,7 @@ repositories {
         name = "sonatype-oss-snapshots1"
         url = "https://repo.papermc.io/repository/maven-public/"
     }
-    // GeyserMC/Floodgate 仓库
+    // GeyserMC/Floodgate repository
     maven {
         name = "opencollab-snapshot"
         url = "https://repo.opencollab.dev/main/"
@@ -32,12 +32,12 @@ repositories {
 }
 
 dependencies {
-    compileOnly "dev.folia:folia-api:1.21.8-R0.1-SNAPSHOT"
+    compileOnly "dev.folia:folia-api:26.2-R0.1-SNAPSHOT"
     implementation 'at.favre.lib:bcrypt:0.10.2'
     implementation fileTree(dir: 'libs', include: '*.jar')
-    // Floodgate API (基岩版支持)
+    // Floodgate API (Bedrock support)
     compileOnly 'org.geysermc.floodgate:api:2.2.4-SNAPSHOT'
-    // Cumulus (Floodgate 表单 API)
+    // Cumulus (Floodgate Forms API)
     compileOnly 'org.geysermc.cumulus:cumulus:1.1.2'
 }
 
@@ -47,20 +47,20 @@ tasks {
     }
     
     shadowJar {
-        // 重新定位 BCrypt 包以避免与其他插件冲突
+        // Relocate BCrypt to avoid conflicts with other plugins
         relocate 'at.favre.lib.crypto.bcrypt', 'com.blbilink.neoLogin.lib.bcrypt'
         
-        // 设置分类器为空，这样生成的文件名就是 plugin-version.jar 而不是 plugin-version-all.jar
+        // Set classifier to empty so output is plugin-version.jar instead of plugin-version-all.jar
         archiveClassifier = ''
         
-        // 排除不必要的文件
+        // Exclude unnecessary files
         exclude 'META-INF/MANIFEST.MF'
         exclude 'META-INF/*.SF'
         exclude 'META-INF/*.DSA'
         exclude 'META-INF/*.RSA'
     }
     
-    // 确保 shadowJar 任务在 build 时执行
+    // Ensure shadowJar runs during build
     build {
         dependsOn shadowJar
     }
