@@ -1,6 +1,6 @@
 plugins {
     id 'java'
-    id 'com.gradleup.shadow' version '8.3.6'
+    id 'com.gradleup.shadow' version '9.6.1'
     id("xyz.jpenilla.run-paper") version "2.3.1"
 }
 
@@ -32,7 +32,7 @@ repositories {
 }
 
 dependencies {
-    compileOnly "dev.folia:folia-api:26.2-R0.1-SNAPSHOT"
+    compileOnly "dev.folia:folia-api:26.2.build.7-beta"
     implementation 'at.favre.lib:bcrypt:0.10.2'
     implementation fileTree(dir: 'libs', include: '*.jar')
     // Floodgate API (Bedrock support)
@@ -66,7 +66,7 @@ tasks {
     }
 }
 
-def targetJavaVersion = 21
+def targetJavaVersion = 25
 java {
     def javaVersion = JavaVersion.toVersion(targetJavaVersion)
     sourceCompatibility = javaVersion
